@@ -6,7 +6,7 @@
 #    By: abelhadj <abelhadj@student.1337.ma>        +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/06/06 20:53:18 by abelhadj          #+#    #+#              #
-#    Updated: 2023/06/07 20:34:16 by abelhadj         ###   ########.fr        #
+#    Updated: 2023/06/13 22:10:14 by abelhadj         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -21,10 +21,9 @@ FRAMEWORKS = -lmlx -framework OpenGL -framework AppKit
 
 LIBFT	= $(addprefix libft/, ft_itoa ft_calloc ft_putstr_fd ft_strcmp ft_strchr ft_strlen ft_strjoin_gnl ft_strjoin \
 			ft_strncmp get_next_line ft_split ft_tablen ft_memmove ft_memcpy ft_strdup)
-
 UTILS	= $(addprefix utils/, ft_error name_check read_map split_map free_cart)
-GAME	= $(addprefix game/, game position quit img keys move_left move_right move_down move_top coins openportal win)
-CHECK	= $(addprefix check/, check_map check_char check_cadre check_coin check_exit check_player check_rect check_path)
+GAME	= $(addprefix game/, game position quit update keys move turn draw hcast vcast ray)
+CHECK	= $(addprefix check/, check00)
 
 FILES	= main $(LIBFT) $(UTILS) $(CHECK) $(GAME)
 SRC		= $(FILES:=.c)
