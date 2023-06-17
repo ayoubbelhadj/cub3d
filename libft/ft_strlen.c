@@ -3,19 +3,21 @@
 /*                                                        :::      ::::::::   */
 /*   ft_strlen.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: abelhadj <abelhadj@student.1337.ma>        +#+  +:+       +#+        */
+/*   By: aoudija <aoudija@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/02/14 17:39:43 by abelhadj          #+#    #+#             */
-/*   Updated: 2023/06/07 16:43:44 by abelhadj         ###   ########.fr       */
+/*   Created: 2022/10/05 14:08:25 by abelhadj          #+#    #+#             */
+/*   Updated: 2023/06/13 17:39:07 by aoudija          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../include/cub3d.h"
+#include"libft.h"
 
 size_t	ft_strlen(const char *s)
 {
 	size_t	i;
 
+	if (!s)
+		return (-1);
 	i = 0;
 	while (s[i])
 		i++;

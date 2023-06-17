@@ -3,19 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   ft_putstr_fd.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: abelhadj <abelhadj@student.1337.ma>        +#+  +:+       +#+        */
+/*   By: aoudija <aoudija@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/02/14 17:52:27 by abelhadj          #+#    #+#             */
-/*   Updated: 2023/06/07 16:43:44 by abelhadj         ###   ########.fr       */
+/*   Created: 2022/10/09 15:29:58 by abelhadj          #+#    #+#             */
+/*   Updated: 2023/05/29 12:58:44 by aoudija          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../include/cub3d.h"
-
-void	ft_putchar_fd(char c, int fd)
-{
-	write(fd, &c, 1);
-}
+#include "libft.h"
 
 void	ft_putstr_fd(char *s, int fd)
 {

@@ -6,20 +6,11 @@
 /*   By: abelhadj <abelhadj@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/13 21:02:12 by abelhadj          #+#    #+#             */
-/*   Updated: 2023/06/13 21:07:40 by abelhadj         ###   ########.fr       */
+/*   Updated: 2023/06/15 20:16:11 by abelhadj         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/cub3d.h"
-
-double	distance(double x, double y)
-{
-	double	dis;
-
-	dis = sqrt((x - g_data.player.x) * (x - g_data.player.x)
-			+ (y - g_data.player.y) * (y - g_data.player.y));
-	return (dis);
-}
 
 void	checkdis(int i)
 {
@@ -35,9 +26,25 @@ void	checkdis(int i)
 	else
 		vdis = LONG_MAX;
 	if (vdis >= hdis)
-		g_data.ray[i].dis = hdis;
+		h_return(i, hdis);
 	else
-		g_data.ray[i].dis = vdis;
+		v_return(i, vdis);
+}
+
+void	direct(int i)
+{
+	g_data.ray[i].down = 0;
+	g_data.ray[i].up = 0;
+	g_data.ray[i].left = 0;
+	g_data.ray[i].right = 0;
+	if (isdown(g_data.ray[i].angle))
+		g_data.ray[i].down = 1;
+	else
+		g_data.ray[i].up = 1;
+	if (isright(g_data.ray[i].angle))
+		g_data.ray[i].right = 1;
+	else
+		g_data.ray[i].left = 1;
 }
 
 void	sendrays(void)
@@ -55,6 +62,7 @@ void	sendrays(void)
 		g_data.ray[i].angle = rayangle;
 		h_cast(i);
 		v_cast(i);
+		direct(i);
 		checkdis(i);
 		rayangle += g_data.viewangle / g_data.nbr_rays;
 		vapsangle(&rayangle);

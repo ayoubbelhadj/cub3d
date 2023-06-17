@@ -6,7 +6,7 @@
 /*   By: abelhadj <abelhadj@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/18 19:31:10 by abelhadj          #+#    #+#             */
-/*   Updated: 2023/06/13 18:09:18 by abelhadj         ###   ########.fr       */
+/*   Updated: 2023/06/15 21:59:37 by abelhadj         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,6 +41,7 @@ void	move_top(t_data *data)
 	x = data->player.x + cos(data->player.alpha) * movespeed;
 	if (check_wall(x, y))
 	{
+		puts("hey\n");
 		data->player.y = y;
 		data->player.x = x;
 	}

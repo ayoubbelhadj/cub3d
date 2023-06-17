@@ -3,21 +3,26 @@
 /*                                                        :::      ::::::::   */
 /*   ft_strcmp.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: abelhadj <abelhadj@student.1337.ma>        +#+  +:+       +#+        */
+/*   By: aoudija <aoudija@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/02/14 17:48:22 by abelhadj          #+#    #+#             */
-/*   Updated: 2023/06/07 16:43:44 by abelhadj         ###   ########.fr       */
+/*   Created: 2023/04/27 15:05:55 by aoudija           #+#    #+#             */
+/*   Updated: 2023/05/29 15:26:12 by aoudija          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../include/cub3d.h"
+#include "libft.h"
 
-int	ft_strcmp(char *s1, char *s2)
+int	ft_strcmp(char *str, char *st)
 {
 	int	i;
 
-	i = 0;
-	while (s1[i] != '\0' && s2[i] != '\0' && s1[i] == s2[i])
-		i++;
-	return (s1[i] - s2[i]);
+	if (!str)
+		return (0);
+	i = -1;
+	while (str[++i])
+	{
+		if (str[i] != st[i])
+			break ;
+	}
+	return (str[i] - st[i]);
 }

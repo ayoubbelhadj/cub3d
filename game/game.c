@@ -6,68 +6,57 @@
 /*   By: abelhadj <abelhadj@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/15 17:18:49 by abelhadj          #+#    #+#             */
-/*   Updated: 2023/06/14 14:23:12 by abelhadj         ###   ########.fr       */
+/*   Updated: 2023/06/16 20:07:27 by abelhadj         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/cub3d.h"
 
-void	imgs_init(void)
+int	key_off(int key)
 {
-	g_data.img = mlx_new_image(g_data.mlx, g_data.x_width, g_data.y_height);
-	g_data.addr = mlx_get_data_addr(g_data.img, &g_data.bits_per_pixel,
-			&g_data.line_length, &g_data.endian);
+	if (key == 123)
+		g_data.player.dirturn = 0;
+	if (key == 124)
+		g_data.player.dirturn = 0;
+	if (key == 1 || key == 125)
+		g_data.player.dirwalk = 0;
+	if (key == 13 || key == 126)
+		g_data.player.dirwalk = 0;
+	if (key == 0)
+		g_data.player.dirwalkx = 0;
+	if (key == 2)
+		g_data.player.dirwalkx = 0;
+	return (0);
 }
 
-void	win_init(void)
+int	key_on(int key)
 {
-	g_data.mlx = mlx_init();
-	g_data.mlx_win = mlx_new_window(g_data.mlx, WIN_W, WIN_H, "CUB3D");
-}
-
-void	init(void)
-{
-	g_data.cart = split_map(g_data.map);
-	if (!g_data.cart)
-	{
-		free_cart(g_data.cart);
-		ft_error("ERROR!!\nMap invalid.\n");
-	}
-	g_data.viewangle = 60 * (M_PI / 180);
-	g_data.player.alpha = M_PI / 2;
-	g_data.player.speedretate = SPEED_R * (M_PI / 180);
-	g_data.player.speedretate_m = M_SPEED_R * (M_PI / 180);
-	g_data.player.speedmove = (CUBE * SPEED_M) / 20 ;
-	g_data.player.dirturn = 0;
-	g_data.player.dirwalk = 0;
-	g_data.rad = M_PI / 180;
-	position();
-	g_data.x_width = ft_strlen(g_data.cart[0]) * CUBE;
-	g_data.y_height = ft_tablen(g_data.cart) * CUBE;
-	g_data.nbr_rays = WIN_W / WBW;
-	g_data.ray = ft_calloc(sizeof(t_ray), g_data.nbr_rays + 1);
-	win_init();
-	imgs_init();
-}
-
-int	mouse(int x, int y)
-{
-	if (g_data.xmouse < x)
-		turn_left(&g_data, 1);
-	if (g_data.xmouse > x)
-		turn_right(&g_data, 1);
-	g_data.xmouse = x;
-	update();
+	if (key == 123)
+		g_data.player.dirturn = -1;
+	if (key == 124)
+		g_data.player.dirturn = 1;
+	if (key == 1 || key == 125)
+		g_data.player.dirwalk = -1;
+	if (key == 13 || key == 126)
+		g_data.player.dirwalk = 1;
+	if (key == 0)
+		g_data.player.dirwalkx = 1;
+	if (key == 2)
+		g_data.player.dirwalkx = -1;
+	if (key == 53)
+		quit(&g_data);
+	if (key == 49)
+		g_data.shotf = 1;
 	return (0);
 }
 
 void	game(void)
 {
 	init();
-	update();
-	mlx_hook(g_data.mlx_win, 2, 0, keys, &g_data);
+	mlx_hook(g_data.mlx_win, 2, 1L << 0, key_on, NULL);
+	mlx_hook(g_data.mlx_win, 3, 1L << 1, key_off, NULL);
 	mlx_hook(g_data.mlx_win, 17, 0, quit, &g_data);
 	mlx_hook(g_data.mlx_win, 6, 0, mouse, NULL);
-	mlx_put_image_to_window(g_data.mlx, g_data.mlx_win, g_data.img, 0, 0);
+	mlx_loop_hook(g_data.mlx, update, NULL);
 	mlx_loop(g_data.mlx);
 }

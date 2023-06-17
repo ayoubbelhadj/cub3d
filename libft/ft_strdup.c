@@ -3,24 +3,29 @@
 /*                                                        :::      ::::::::   */
 /*   ft_strdup.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: abelhadj <abelhadj@student.1337.ma>        +#+  +:+       +#+        */
+/*   By: aoudija <aoudija@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/02/19 21:36:17 by abelhadj          #+#    #+#             */
-/*   Updated: 2023/06/07 16:43:44 by abelhadj         ###   ########.fr       */
+/*   Created: 2022/10/10 16:02:05 by abelhadj          #+#    #+#             */
+/*   Updated: 2023/06/16 10:34:21 by aoudija          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../include/cub3d.h"
+#include"libft.h"
 
 char	*ft_strdup(const char *s)
 {
-	char	*d;
-	size_t	len;
+	int		i;
+	char	*s2;
 
-	len = ft_strlen(s);
-	d = (char *)malloc(sizeof(char) * (len + 1));
-	if (!d)
+	i = 0;
+	s2 = (char *)malloc(ft_strlen(s) + 1);
+	if (s2 == NULL)
 		return (NULL);
-	ft_memmove(d, s, len + 1);
-	return (d);
+	while (s[i] != '\0')
+	{
+		s2[i] = s[i];
+		i++;
+	}
+	s2[i] = '\0';
+	return (s2);
 }
